@@ -118,3 +118,28 @@ body {
 .project-item:hover, .client-logo:hover {
     box-shadow: 0 0 40px #00ff9c;
 }
+
+/* JavaScript Interactions */
+<script>
+    // Add neon glow effect on sidebar menu items
+    const sidebarItems = document.querySelectorAll('.sidebar nav ul li');
+    sidebarItems.forEach(item => {
+        item.addEventListener('mouseover', () => {
+            item.style.textShadow = '0 0 10px #00ff9c, 0 0 20px #00ff9c';
+        });
+        item.addEventListener('mouseout', () => {
+            item.style.textShadow = 'none';
+        });
+    });
+
+    // Add project item click interaction
+    const projectItems = document.querySelectorAll('.project-item');
+    projectItems.forEach(item => {
+        item.addEventListener('click', () => {
+            item.style.boxShadow = '0 0 50px #00ff9c';
+            setTimeout(() => {
+                item.style.boxShadow = '0 0 20px #00ff9c';
+            }, 500);
+        });
+    });
+</script>
