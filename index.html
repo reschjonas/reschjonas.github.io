@@ -3,265 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jonas Resch - Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            display: flex;
-            height: 100vh;
-            background: linear-gradient(135deg, #121212, #181818);
-            color: #ffffff;
-        }
-
-        .sidebar {
-            width: 300px;
-            background-color: #202020;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            border-right: 1px solid #333;
-            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.4);
-        }
-
-        .profile {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .profile img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 4px solid #0070f3;
-            margin-bottom: 10px;
-            transition: transform 0.3s;
-        }
-
-        .profile img:hover {
-            transform: scale(1.1);
-        }
-
-        .profile h2 {
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        .profile p {
-            font-size: 16px;
-            color: #aaa;
-        }
-
-        nav ul {
-            list-style: none;
-            width: 100%;
-            padding-top: 20px;
-        }
-
-        nav ul li {
-            margin-bottom: 15px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #ffffff;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            border-radius: 12px;
-            transition: background 0.3s;
-            background: linear-gradient(135deg, #333, #444);
-        }
-
-        nav ul li a i {
-            margin-right: 15px;
-        }
-
-        nav ul li a:hover, nav ul li a.active {
-            background: linear-gradient(135deg, #0070f3, #00e6ff);
-            box-shadow: 0 4px 12px rgba(0, 112, 243, 0.5);
-        }
-
-        .main-content {
-            flex-grow: 1;
-            padding: 40px;
-            overflow-y: auto;
-        }
-
-        .main-content section {
-            background: #202020;
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .main-content h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #0070f3, #00e6ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .main-content p {
-            font-size: 18px;
-            line-height: 1.6;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: linear-gradient(135deg, #333, #444);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-        }
-
-        .card h3 {
-            font-size: 20px;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            color: #aaa;
-        }
-
-        .card i {
-            font-size: 30px;
-            background: linear-gradient(135deg, #0070f3, #00e6ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .social-icons a {
-            color: #0070f3;
-            font-size: 20px;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-
-        .social-icons a:hover {
-            color: #ffffff;
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                height: auto;
-                border-right: none;
-                border-bottom: 1px solid #333;
-            }
-
-            .main-content {
-                padding: 20px;
-            }
-        }
-    </style>
+    <title>Cyberpunk Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="sidebar">
-        <div class="profile">
-            <img src="profile.jpg" alt="Jonas Resch">
-            <h2>Jonas Resch</h2>
-            <p>Tech Enthusiast</p>
-        </div>
         <nav>
             <ul>
-                <li><a href="#about" class="active"><i class="fas fa-user"></i> About</a></li>
-                <li><a href="#resume"><i class="fas fa-file-alt"></i> Resume</a></li>
-                <li><a href="#works"><i class="fas fa-briefcase"></i> Works</a></li>
-                <li><a href="#blogs"><i class="fas fa-blog"></i> Blogs</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li>About Me</li>
+                <li>Portfolio</li>
+                <li>Clients</li>
+                <li>Research</li>
             </ul>
         </nav>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
     </div>
 
-    <div class="main-content">
-        <section id="about">
-            <h1>About Me</h1>
-            <p>Hello! I'm Jonas Resch, a tech enthusiast passionate about building clean and minimalist websites.</p>
-        </section>
-
-        <section id="resume">
-            <h1>Resume</h1>
-            <p>Here you can find my experience and skills.</p>
-        </section>
-
-        <section id="works">
-            <h1>Works</h1>
-            <div class="cards">
-                <div class="card">
-                    <i class="fas fa-laptop-code"></i>
-                    <h3>Project 1</h3>
-                    <p>Description of the project.</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Project 2</h3>
-                    <p>Description of the project.</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-database"></i>
-                    <h3>Project 3</h3>
-                    <p>Description of the project.</p>
-                </div>
+    <main>
+        <section class="profile">
+            <div class="profile-card">
+                <img src="https://via.placeholder.com/150" alt="Profile" class="profile-img">
+                <h1>I'm,<br><span class="name">Jon Daniel</span></h1>
+                <p class="contact">inquiry@cyberpunk.design</p>
             </div>
         </section>
 
-        <section id="blogs">
-            <h1>Blogs</h1>
-            <p>Read my latest blog posts about tech and development.</p>
+        <section class="projects">
+            <div class="project-item">
+                <h2>251</h2>
+                <p>Projects</p>
+            </div>
+            <div class="project-item">
+                <h2>156</h2>
+                <p>Awards</p>
+            </div>
+            <div class="project-item">
+                <h2>172</h2>
+                <p>Global Design Awards</p>
+            </div>
         </section>
 
-        <section id="contact">
-            <h1>Contact</h1>
-            <p>Feel free to reach out via <a href="mailto:resch.jonas@pm.me">email</a>!</p>
+        <section class="clients">
+            <h3>Clients</h3>
+            <div class="client-logo apple"></div>
+            <div class="client-logo globe"></div>
         </section>
-    </div>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
