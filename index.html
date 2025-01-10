@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jonas | Cybersecurity Specialist</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-text">Initializing System...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="cursor"></div>
+    
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="logo">
+                <span class="bracket">[</span>
+                <span class="logo-text">J</span>
+                <span class="bracket">]</span>
+                <span class="blink-cursor">_</span>
+            </div>
+        </div>
+        
+        <div class="nav-links">
+            <a href="#home" class="nav-link">
+                <span class="nav-icon"><i class="fas fa-terminal"></i></span>
+                <span class="nav-text">~/home</span>
+            </a>
+            <a href="#about" class="nav-link">
+                <span class="nav-icon"><i class="fas fa-user-shield"></i></span>
+                <span class="nav-text">~/about</span>
+            </a>
+            <a href="#projects" class="nav-link">
+                <span class="nav-icon"><i class="fas fa-code-branch"></i></span>
+                <span class="nav-text">~/projects</span>
+            </a>
+            <a href="#skills" class="nav-link">
+                <span class="nav-icon"><i class="fas fa-laptop-code"></i></span>
+                <span class="nav-text">~/skills</span>
+            </a>
+            <a href="#blogs" class="nav-link">
+                <span class="nav-icon"><i class="fas fa-newspaper"></i></span>
+                <span class="nav-text">~/blogs</span>
+            </a>
+            <a href="#contact" class="nav-link">
+                <span class="nav-icon"><i class="fas fa-network-wired"></i></span>
+                <span class="nav-text">~/contact</span>
+            </a>
+        </div>
+
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            <span class="status-text">System Online</span>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="glitch-container">
+            <h1 class="glitch" data-text="JONAS">JONAS</h1>
+        </div>
+        <p class="typing-text">Cybersecurity Enthusiast & Hobby Coder</p>
+        <div class="social-links">
+            <a href="https://github.com/reschjonas" class="social-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/jonas-resch-91bba733b/" class="social-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/4realjonas/" class="social-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <div class="terminal-card">
+                <div class="terminal-header">
+                    <span class="terminal-button"></span>
+                    <span class="terminal-button"></span>
+                    <span class="terminal-button"></span>
+                    <span class="terminal-title">whoami.sh</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="matrix-bg"></div>
+                    <div class="profile-info">
+                        <div class="info-line">
+                            <span class="prompt">root@jonas-system</span>
+                            <span class="separator">:</span>
+                            <span class="directory">~/profile</span>
+                            <span class="separator">$</span>
+                            <span class="command">cat profile.txt</span>
+                        </div>
+                        <div class="profile-data">
+                            <div class="data-group">
+                                <span class="label">User:</span>
+                                <span class="value">Jonas Resch</span>
+                            </div>
+                            <div class="data-group">
+                                <span class="label">Path:</span>
+                                <span class="value typewriter-container">
+                                    <span class="typewriter-prefix">> </span>
+                                    <span class="typewriter-text" data-text='["Cybersecurity Enthusiast", "Ethical Hacker", "CTF Player", "Cryptography Explorer"]'></span>
+                                    <span class="typewriter-cursor">█</span>
+                                </span>
+                            </div>
+                            <div class="data-group">
+                                <span class="label">HTB Rank:</span>
+                                <span class="value">&lt;Top 800 Worldwide&gt;</span>
+                            </div>
+                        </div>
+
+                        <div class="info-line">
+                            <span class="prompt">root@jonas-system</span>
+                            <span class="separator">:</span>
+                            <span class="directory">~/profile</span>
+                            <span class="separator">$</span>
+                            <span class="command">cat bio.txt</span>
+                        </div>
+                        <div class="bio-text">
+                            <p>18-year-old cybersecurity enthusiast, hobby coder and ethical hacker with a passion for quantum-safe encryption. Currently building an end-to-end encrypted quantum-safe communication tool.</p>
+                        </div>
+
+                        <div class="info-line">
+                            <span class="prompt">root@jonas-system</span>
+                            <span class="separator">:</span>
+                            <span class="directory">~/profile</span>
+                            <span class="separator">$</span>
+                            <span class="terminal-cursor">█</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>SecureSafe</h3>
+                    <p>A lightweight, easy-to-use file encryption tool built with Python.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Cryptography</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Security</span>
+                    </div>
+                </div>
+                <div class="project-footer">
+                    <a href="https://github.com/reschjonas/SecureSafe" class="visit-btn" target="_blank" rel="noopener noreferrer">
+                        <span class="btn-text">View Project</span>
+                        <span class="btn-icon">
+                            <i class="fab fa-github"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>FlipperZero_BadUSB</h3>
+                    <p>BadUSB-Scripts written in DuckyScript for the FlipperZero. Scripts are currently outdated and will be updated soon.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">BadUSB</span>
+                        <span class="project-tag">FlipperZero</span>
+                        <span class="project-tag">DuckyScript</span>
+                    </div>
+                </div>
+                <div class="project-footer">
+                    <a href="https://github.com/reschjonas/FlipperZero_BadUSB" class="visit-btn" target="_blank" rel="noopener noreferrer">
+                        <span class="btn-text">View Project</span>
+                        <span class="btn-icon">
+                            <i class="fab fa-github"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>LockBox</h3>
+                    <p>End-to-end encrypted communication tool with multi-layered post-quantum cryptography implementation. Coming soon.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Post-Quantum</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Encryption</span>
+                    </div>
+                </div>
+                <div class="project-footer">
+                    <span class="visit-btn disabled">
+                        <span class="btn-text">Coming Soon</span>
+                        <span class="btn-icon">
+                            <i class="fas fa-clock"></i>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills & Tools</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Security</h3>
+                <ul>
+                    <li>Ethical Hacking</li>
+                    <li>Cybersecurity</li>
+                    <li>Quantum-Safe Encryption</li>
+                    <li>Qubes OS</li>
+                    <li>Cryptography</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>Bash</li>
+                    <li>C#</li>
+                    <li>Lua</li>
+                    <li>DuckyScript</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Tools</h3>
+                <ul>
+                    <li>Kali Linux</li>
+                    <li>Metasploit</li>
+                    <li>Burpsuite</li>
+                    <li>Wireshark</li>
+                    <li>SQLMap</li>
+                    <li>Hashcat</li>
+                    <li>Bloodhound</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="blogs" class="blogs-section">
+        <h2>Latest Insights</h2>
+        <div class="blogs-grid">
+            <article class="blog-card">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-date">5 Jan 2025</span>
+                        <span class="blog-category">Cryptography</span>
+                    </div>
+                    <h3>File Encryption Tool with ECC and AES</h3>
+                    <p>Writeup on my first project secure-safe, a file encryption tool with ECC and AES...</p>
+                    <div class="blog-footer">
+                        <span class="read-time">
+                            <i class="fas fa-clock"></i> 5 min read
+                        </span>
+                        <a href="https://medium.com/@reschjonas/building-a-secure-file-encryption-tool-with-ecc-and-aes-0cfb1b071c41" class="visit-btn" target="_blank" rel="noopener noreferrer">
+                            <span class="btn-text">Read on Medium</span>
+                            <span class="btn-icon">
+                                <i class="fas fa-external-link-alt"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-date">Coming Soon</span>
+                        <span class="blog-category">Cryptography</span>
+                    </div>
+                    <h3>Understanding zero-knowledge proofs</h3>
+                    <p>A detailed analysis of zero-knowledge proofs...</p>
+                    <div class="blog-footer">
+                        <span class="read-time">
+                            <i class="fas fa-clock"></i> 10 min read
+                        </span>
+                        <span class="visit-btn disabled">
+                            <span class="btn-text">Coming Soon</span>
+                            <span class="btn-icon">
+                                <i class="fas fa-clock"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-date">Coming Soon</span>
+                        <span class="blog-category">CTF</span>
+                    </div>
+                    <h3>HackTheBox Writeup</h3>
+                    <p>Writeup on a HackTheBox challenge...</p>
+                    <div class="blog-footer">
+                        <span class="read-time">
+                            <i class="fas fa-clock"></i> 10 min read
+                        </span>
+                        <span class="visit-btn disabled">
+                            <span class="btn-text">Coming Soon</span>
+                            <span class="btn-icon">
+                                <i class="fas fa-clock"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-card">
+                <div class="contact-content">
+                    <div class="terminal-header">
+                        <span class="terminal-button"></span>
+                        <span class="terminal-button"></span>
+                        <span class="terminal-button"></span>
+                        <span class="terminal-title">contact.sh</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="line">
+                            <span class="prompt">$</span> 
+                            <span class="command">whoami</span>
+                        </div>
+                        <div class="line">Jonas</div>
+                        <div class="line">
+                            <span class="prompt">$</span> 
+                            <span class="command">contact --info</span>
+                        </div>
+                        <div class="contact-info">
+                            <a href="mailto:resch.jonas@pm.me" class="contact-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-envelope"></i> resch.jonas@pm.me
+                            </a>
+                            <a href="https://discord.com/users/442053305477234708" class="contact-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-discord"></i> unc0v3red
+                            </a>
+                        </div>
+                        <div class="line typing-line">
+                            <span class="prompt">$</span> 
+                            <span class="terminal-cursor">█</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
