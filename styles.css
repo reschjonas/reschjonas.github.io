@@ -1898,6 +1898,13 @@ section {
     }
 } 
 
+@media (min-width: 769px) {
+    .terminal-card {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+}
+
 
 @media (max-width: 768px) {
     .cursor {
