@@ -1897,3 +1897,14 @@ section {
         padding: 2rem 0.5rem;
     }
 } 
+
+
+@media (max-width: 768px) {
+    .cursor {
+        display: none;
+    }
+    
+    * {
+        cursor: auto !important;
+    }
+} 
