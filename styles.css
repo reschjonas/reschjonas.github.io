@@ -638,14 +638,57 @@ section h2::after {
 .about-container {
     max-width: 1000px;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .terminal-card {
-    background: var(--card-bg);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);
-    position: relative;
+    margin: 1rem;
+    max-width: 100%;
+}
+
+.profile-info {
+    padding: 1rem;
+}
+
+@media (min-width: 769px) {
+    .profile-info {
+        overflow-x: hidden;
+        white-space: normal;
+    }
+
+    .data-group {
+        white-space: normal;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .bio-text {
+        white-space: normal;
+        max-width: 100%;
+    }
+
+    .info-line {
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-info {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+.data-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.label {
+    min-width: 100px;
 }
 
 .matrix-bg {
@@ -1738,5 +1781,119 @@ section:hover::before {
     
     .project-footer {
         padding: 1.2rem 1.5rem;
+    }
+} 
+
+
+.about-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.terminal-card {
+    margin: 1rem;
+    max-width: 100%;
+}
+
+.profile-info {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 1rem;
+}
+
+.data-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.label {
+    min-width: 100px;
+}
+
+
+@media (max-width: 768px) {
+    .about-container {
+        padding: 0;
+    }
+
+    .terminal-card {
+        margin: 0.5rem;
+        border-radius: 10px;
+    }
+
+    .profile-info {
+        padding: 0.8rem;
+    }
+
+    .info-line {
+        font-size: 0.9rem;
+    }
+
+    .data-group {
+        flex-direction: column;
+    }
+
+    .bio-text {
+        white-space: normal;
+        font-size: 0.9rem;
+    }
+
+    .terminal-header {
+        padding: 0.5rem;
+    }
+
+
+    section h2 {
+        font-size: 2rem;
+        margin: 1.5rem 0;
+    }
+
+    .typewriter-container {
+        font-size: 0.9rem;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .terminal-card {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .info-line {
+        font-size: 0.8rem;
+    }
+
+    .profile-info {
+        padding: 0.5rem;
+    }
+
+    .bio-text {
+        font-size: 0.85rem;
+    }
+}
+
+
+* {
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+
+section {
+    padding: 4rem 1rem;
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 2rem 0.5rem;
     }
 } 
