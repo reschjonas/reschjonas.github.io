@@ -1,7 +1,5 @@
 # Personal Portfolio Website
 
-(Sorry for my horrible css file)
-
 This is my personal portfolio website showcasing my projects and skills in cybersecurity and software development. Visit [reschj.one](https://reschj.one) to see it live.
 
 ## Features
