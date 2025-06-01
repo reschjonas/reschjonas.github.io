@@ -22,7 +22,7 @@ This is my personal portfolio website showcasing my projects and skills in cyber
 - Email: resch.jonas@pm.me
 - GitHub: [@reschjonas](https://github.com/reschjonas)
 - LinkedIn: [Jonas Resch](https://www.linkedin.com/in/jonas-resch-91bba733b/)
-- Discord: unc0v3red
+- Discord: dil1thium
 
 ## License
 
