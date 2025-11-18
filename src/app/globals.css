@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #030712; /* zinc-950 */
+  --color-foreground: #f8fafc; /* zinc-50 */
+  --color-muted: #94a3b8; /* zinc-400 */
+  --color-muted-foreground: #64748b; /* zinc-500 */
+  
+  --color-primary: #6366f1; /* indigo-500 */
+  --color-primary-foreground: #ffffff;
+  
+  --color-secondary: #1e293b; /* zinc-800 */
+  --color-secondary-foreground: #f8fafc;
+  
+  --color-accent: #8b5cf6; /* violet-500 */
+  --color-accent-foreground: #ffffff;
+  
+  --color-card: #0f172a; /* zinc-900 */
+  --color-card-foreground: #f8fafc;
+  
+  --color-border: #1e293b; /* zinc-800 */
+  
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+  
+  --animate-fade-in: fadeIn 0.5s ease-out forwards;
+  --animate-slide-up: slideUp 0.5s ease-out forwards;
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary-foreground;
+    font-feature-settings: "RLIG" 1, "CALT" 1;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-secondary/30 backdrop-blur-md border border-white/10;
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+  }
+}
