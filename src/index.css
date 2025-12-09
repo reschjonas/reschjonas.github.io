@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --terminal-bg: #0d0d0d;
+  --terminal-text: #ffb000;
+  --terminal-glow: #ffb00080;
+  --scanline-color: rgba(18, 16, 16, 0.5);
+  --font-main: 'JetBrains Mono', monospace;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  font-family: var(--font-main);
+  overflow: hidden;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  -webkit-font-smoothing: none;
+}
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* CRT Effect */
+.crt::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+  pointer-events: none;
+}
+
+/* CRT Screen Curvature Effect */
+@media (min-width: 768px) {
+  .crt-screen {
+    transform: perspective(1200px) rotateX(1deg);
+    transform-origin: center center;
+  }
+
+  /* Vignette overlay for curved glass effect */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 100;
+    box-shadow: inset 0 0 120px 40px rgba(0, 0, 0, 0.85);
+    border-radius: 12px;
+  }
+}
+
+.crt::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.1);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.027906;
+  }
+
+  5% {
+    opacity: 0.048532;
+  }
+
+  10% {
+    opacity: 0.026333;
+  }
+
+  15% {
+    opacity: 0.042694;
+  }
+
+  20% {
+    opacity: 0.027573;
+  }
+
+  25% {
+    opacity: 0.055308;
+  }
+
+  30% {
+    opacity: 0.028638;
+  }
+
+  35% {
+    opacity: 0.050555;
+  }
+
+  40% {
+    opacity: 0.026372;
+  }
+
+  45% {
+    opacity: 0.055231;
+  }
+
+  50% {
+    opacity: 0.025840;
+  }
+
+  55% {
+    opacity: 0.054379;
+  }
+
+  60% {
+    opacity: 0.022029;
+  }
+
+  65% {
+    opacity: 0.050202;
+  }
+
+  70% {
+    opacity: 0.027696;
+  }
+
+  75% {
+    opacity: 0.055852;
+  }
+
+  80% {
+    opacity: 0.027403;
+  }
+
+  85% {
+    opacity: 0.054555;
+  }
+
+  90% {
+    opacity: 0.028116;
+  }
+
+  95% {
+    opacity: 0.058447;
+  }
+
+  100% {
+    opacity: 0.027906;
+  }
+}
+
+.text-glow {
+  text-shadow: 0 0 4px var(--terminal-glow);
+}
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background-color: var(--terminal-text);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+a {
+  color: var(--terminal-text);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--terminal-text);
+}
+
+a:hover {
+  background-color: var(--terminal-text);
+  color: var(--terminal-bg);
+  text-decoration: none;
+}
+
+/* TUI Utilities */
+.tui-border-double {
+  border: 4px double var(--terminal-text);
+  box-shadow: 0 0 10px var(--terminal-glow);
+}
+
+.tui-border-solid {
+  border: 2px solid var(--terminal-text);
+  box-shadow: 0 0 5px var(--terminal-glow);
+}
+
+.tui-panel {
+  background-color: rgba(13, 13, 13, 0.95);
+  position: relative;
+}
+
+.tui-title {
+  position: absolute;
+  top: -0.8em;
+  left: 1em;
+  background-color: var(--terminal-bg);
+  padding: 0 0.5em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--terminal-text);
+}
+
+.tui-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .tui-grid {
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto 1fr;
+  }
+}
+
+/* Scrollbar for widgets */
+.tui-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tui-scroll::-webkit-scrollbar-track {
+  background: #000;
+}
+
+.tui-scroll::-webkit-scrollbar-thumb {
+  background: var(--terminal-text);
+}

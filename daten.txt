@@ -1,0 +1,55 @@
+Name: Jonas
+Ort: Chemnitz, Deutschland
+Studium: IT-Sicherheit (B. Sc., Hochschule Mittweida)
+Start: Oktober 2025
+
+Schwerpunkte:
+
+IT-Security & Penetration Testing
+
+Web Security (OWASP Top 10, SSRF, Input Validation, PHP-Sicherheitsanalyse)
+
+Forensik & Kryptografie (weniger aber mach  ich manchmal)
+
+Linux-Systeme (Parrot OS, Arch, Kali)
+
+Schwachstellenanalyse und Code Audits (code audits kaum)
+
+KI & AGI-Sicherheitsforschung (Interesse)
+
+Skills:
+
+Penetration Testing (Top 200 auf HackTheBox)
+
+Angestellt als Studentische Hilfskraft beim Rechenzentrum der HSMW als Sicherheitsanalyst
+
+Custom Exploits
+
+AI supported development
+
+Scripting & Automatisierung (Python, Bash)
+
+Interessen:
+
+Offensive Security
+
+Priviledge Escalation
+
+Cryptography
+
+KI-Sicherheit und ethische Technologieentwicklung
+
+github für infos: https://github.com/reschjonas/
+linkedin: https://www.linkedin.com/in/jonas-resch-91bba733b/
+
+---
+Additional Info recovered from old portfolio:
+Email: resch.jonas@pm.me
+
+Projects:
+1. EscalateX - Linux privilege escalation scanner (https://github.com/ExploitWorks/EscalateX)
+2. DesyncDiver - HTTP Request Smuggling detection (https://github.com/ExploitWorks/DesyncDiver)
+3. HTTPipe - Pentesting tool for serving files (https://github.com/ExploitWorks/HTTPipe)
+4. TaskThief - Windows scheduled tasks exploitation (https://github.com/ExploitWorks/TaskThief)
+5. QuantHide - Quantum-resistant steganography (https://github.com/ExploitWorks/QuantHide)
+6. Inscribe - USB imaging for Linux (https://github.com/reschjonas/Inscribe)
