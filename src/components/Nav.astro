@@ -1,0 +1,82 @@
+---
+const links = [
+  { label: 'About', href: '/#about' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Skills', href: '/#skills' },
+  { label: 'CVEs', href: '/#cves' },
+  { label: 'Writeups', href: '/#writeups' },
+  { label: 'Contact', href: '/#contact' },
+];
+---
+
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="border-b border-border bg-bg/80 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="font-mono text-accent font-bold text-sm tracking-wider hover:text-accent-hover transition-colors">
+        ~/jonas-resch<span class="animate-blink">_</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-1">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            class="px-3 py-1.5 text-sm text-text-secondary hover:text-accent transition-colors font-mono"
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="/writeups"
+          class="ml-2 px-3 py-1.5 text-sm border border-accent text-accent hover:bg-accent hover:text-bg transition-all font-mono"
+        >
+          all writeups
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="mobile-toggle" class="md:hidden text-text-secondary hover:text-accent transition-colors p-1" aria-label="Toggle navigation">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="hamburger-icon" stroke-linecap="square" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-bg/95 backdrop-blur-md">
+      <div class="px-6 py-4 flex flex-col gap-1">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            class="mobile-link px-3 py-2 text-sm text-text-secondary hover:text-accent transition-colors font-mono"
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="/writeups"
+          class="mobile-link mt-2 px-3 py-2 text-sm border border-accent text-accent hover:bg-accent hover:text-bg transition-all font-mono text-center"
+        >
+          all writeups
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+    });
+  });
+</script>

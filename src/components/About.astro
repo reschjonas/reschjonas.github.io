@@ -1,0 +1,86 @@
+---
+const focusAreas = [
+  {
+    title: 'Web Application Security',
+    desc: 'IDOR, Injection, SSRF, authentication bypass, and business logic vulnerabilities in modern web applications.',
+    icon: '◆',
+  },
+  {
+    title: 'Penetration Testing',
+    desc: 'Structured, reproducible security assessments with clear reporting and actionable remediation guidance.',
+    icon: '◆',
+  },
+  {
+    title: 'Security Tooling',
+    desc: 'Building automated scanners and offensive tools that make pentesting workflows faster and more thorough.',
+    icon: '◆',
+  },
+  {
+    title: 'Vulnerability Research',
+    desc: 'Finding and responsibly disclosing vulnerabilities, contributing to a more secure ecosystem.',
+    icon: '◆',
+  },
+];
+---
+
+<section id="about" class="relative py-24 border-t border-border">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Section header -->
+    <div class="mb-16">
+      <div class="font-mono text-sm text-accent mb-3 flex items-center gap-2">
+        <span class="w-8 h-px bg-accent inline-block"></span>
+        01 // About
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold">
+        About <span class="text-accent">Me</span>
+      </h2>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-12">
+      <!-- Bio column -->
+      <div class="lg:col-span-2 space-y-6">
+        <p class="text-text-secondary leading-relaxed">
+          I'm a <strong class="text-text-primary font-semibold">B.Sc. Applied Computer Science</strong> student at the University of Applied Sciences Mittweida (Germany), 
+          currently in my 1st semester, with a strong passion for IT security.
+        </p>
+        <p class="text-text-secondary leading-relaxed">
+          My workflow involves running structured, reproducible security checks and translating 
+          findings into clear, actionable recommendations. I specialize in web application security 
+          and build custom tools to automate offensive security tasks.
+        </p>
+        <p class="text-text-secondary leading-relaxed">
+          Currently working on <strong class="text-text-primary font-semibold">secure code review</strong> and 
+          <strong class="text-text-primary font-semibold">automated pentesting tools</strong>, and actively 
+          contributing to vulnerability research through responsible disclosure.
+        </p>
+
+        <!-- Quick stats -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+          <div class="border border-border p-4 bg-bg-surface">
+            <div class="font-mono text-2xl text-accent font-bold">6+</div>
+            <div class="text-sm text-text-muted mt-1">Security Tools Built</div>
+          </div>
+          <div class="border border-border p-4 bg-bg-surface">
+            <div class="font-mono text-2xl text-accent font-bold">Top 200</div>
+            <div class="text-sm text-text-muted mt-1">HackTheBox Rank</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Focus areas column -->
+      <div class="lg:col-span-3 grid sm:grid-cols-2 gap-4">
+        {focusAreas.map((area) => (
+          <div class="border border-border p-6 bg-bg-surface hover:border-accent/40 transition-colors group">
+            <div class="font-mono text-accent text-xs mb-3 flex items-center gap-2">
+              <span>{area.icon}</span>
+              <span class="uppercase tracking-widest">{area.title}</span>
+            </div>
+            <p class="text-sm text-text-secondary leading-relaxed">
+              {area.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

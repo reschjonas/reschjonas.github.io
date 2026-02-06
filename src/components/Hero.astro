@@ -1,0 +1,107 @@
+---
+---
+
+<section class="relative min-h-screen flex items-center pt-14">
+  <!-- Background grid pattern -->
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(var(--color-accent) 1px, transparent 1px), linear-gradient(90deg, var(--color-accent) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+  <!-- Gradient overlay from top -->
+  <div class="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-bg to-transparent"></div>
+
+  <div class="relative max-w-6xl mx-auto px-6 py-24 w-full">
+    <div class="grid lg:grid-cols-3 gap-12 items-center">
+      <!-- Left: Main content -->
+      <div class="lg:col-span-2">
+        <!-- Terminal-style prefix -->
+        <div class="animate-fade-in-up font-mono text-sm text-text-muted mb-6 flex items-center gap-2">
+          <span class="text-accent">$</span>
+          <span>whoami</span>
+        </div>
+
+        <!-- Name -->
+        <h1 class="animate-fade-in-up delay-100 text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-4">
+          Jonas <span class="text-accent">Resch</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="animate-fade-in-up delay-200 font-mono text-lg md:text-xl text-text-secondary mb-8">
+          Security Researcher<span class="text-text-muted"> // </span>Pentester<span class="text-text-muted"> // </span>CS Student
+        </p>
+
+        <!-- Bio -->
+        <p class="animate-fade-in-up delay-300 text-text-secondary max-w-xl leading-relaxed mb-10">
+          Security-minded computer science student at HS Mittweida, focusing on application security 
+          and practical penetration testing. Building offensive security tools and translating findings 
+          into clear, actionable results.
+        </p>
+
+        <!-- Status tags -->
+        <div class="animate-fade-in-up delay-400 flex flex-wrap gap-3 mb-10">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 border border-border bg-bg-surface text-sm font-mono text-text-secondary">
+            <span class="w-2 h-2 bg-accent inline-block"></span>
+            HackTheBox Top 200
+          </span>
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 border border-border bg-bg-surface text-sm font-mono text-text-secondary">
+            <span class="w-2 h-2 bg-info inline-block"></span>
+            B.Sc. Applied CS @ Mittweida
+          </span>
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 border border-border bg-bg-surface text-sm font-mono text-text-secondary">
+            <span class="w-2 h-2 bg-warning inline-block"></span>
+            Security Analyst @ HSMW
+          </span>
+        </div>
+
+        <!-- CTA links -->
+        <div class="animate-fade-in-up delay-500 flex flex-wrap gap-4">
+          <a href="#projects" class="group inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-bg font-mono text-sm font-semibold hover:bg-accent-hover transition-colors">
+            View Projects
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="square" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a href="#writeups" class="inline-flex items-center gap-2 px-5 py-2.5 border border-border text-text-secondary hover:border-accent hover:text-accent font-mono text-sm transition-all">
+            Read Writeups
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Credential card -->
+      <div class="hidden lg:block animate-fade-in-up delay-400">
+        <div class="border border-border bg-bg-surface p-6">
+          <div class="font-mono text-[10px] uppercase tracking-widest text-accent mb-5 pb-3 border-b border-border">
+            Quick Stats
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs text-text-muted">CVEs Published</span>
+              <span class="font-mono text-sm text-text-primary">1</span>
+            </div>
+            <div class="h-px bg-border"></div>
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs text-text-muted">HackTheBox</span>
+              <span class="font-mono text-sm text-text-primary">Top 200</span>
+            </div>
+            <div class="h-px bg-border"></div>
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs text-text-muted">Open Source Tools</span>
+              <span class="font-mono text-sm text-text-primary">6+</span>
+            </div>
+            <div class="h-px bg-border"></div>
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs text-text-muted">Focus</span>
+              <span class="font-mono text-sm text-accent">AppSec</span>
+            </div>
+            <div class="h-px bg-border"></div>
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs text-text-muted">Based in</span>
+              <span class="font-mono text-sm text-text-primary">Chemnitz, GER</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom gradient -->
+  <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent"></div>
+</section>

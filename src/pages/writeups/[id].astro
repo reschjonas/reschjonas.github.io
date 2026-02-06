@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const writeups = await getCollection('writeups');
+  return writeups.map((writeup) => ({
+    params: { id: writeup.id },
+    props: { writeup },
+  }));
+}
+
+const { writeup } = Astro.props;
+const { Content } = await render(writeup);
+
+function categoryColor(category: string) {
+  switch (category.toLowerCase()) {
+    case 'web': return 'text-accent border-accent/30';
+    case 'pwn': return 'text-danger border-danger/30';
+    case 'crypto': return 'text-info border-info/30';
+    case 'forensics': return 'text-warning border-warning/30';
+    case 'cve': return 'text-danger border-danger/30';
+    default: return 'text-text-muted border-border';
+  }
+}
+---
+
+<Layout title={`${writeup.data.title} | Jonas Resch`} description={writeup.data.description}>
+  <Nav />
+  <main class="pt-14">
+    <article class="py-24">
+      <div class="max-w-3xl mx-auto px-6">
+        <!-- Back link -->
+        <a href="/writeups" class="font-mono text-sm text-text-muted hover:text-accent transition-colors mb-8 inline-flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="square" stroke-width="2" d="M7 17L3 12m0 0l4-5m-4 5h18" />
+          </svg>
+          Back to writeups
+        </a>
+
+        <!-- Article header -->
+        <header class="mt-6 mb-12">
+          <div class="flex items-center gap-3 mb-4">
+            <span class={`font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border ${categoryColor(writeup.data.category)}`}>
+              {writeup.data.category}
+            </span>
+            <span class="font-mono text-[11px] text-text-muted">
+              {new Date(writeup.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </span>
+          </div>
+          <h1 class="text-3xl md:text-4xl font-bold leading-tight">
+            {writeup.data.title}
+          </h1>
+          <p class="mt-4 text-text-secondary text-lg leading-relaxed">
+            {writeup.data.description}
+          </p>
+          <div class="flex flex-wrap gap-2 mt-6">
+            {writeup.data.tags.map((tag: string) => (
+              <span class="font-mono text-[10px] text-text-muted border border-border px-2 py-0.5">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </header>
+
+        <!-- Divider -->
+        <div class="h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent mb-12"></div>
+
+        <!-- Content -->
+        <div class="prose max-w-none">
+          <Content />
+        </div>
+
+        <!-- Footer divider -->
+        <div class="h-px bg-border mt-16 mb-8"></div>
+
+        <!-- Article footer -->
+        <div class="flex items-center justify-between">
+          <a href="/writeups" class="font-mono text-sm text-text-muted hover:text-accent transition-colors inline-flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="square" stroke-width="2" d="M7 17L3 12m0 0l4-5m-4 5h18" />
+            </svg>
+            All writeups
+          </a>
+          <span class="font-mono text-xs text-text-muted">
+            Jonas Resch &mdash; {new Date(writeup.data.date).getFullYear()}
+          </span>
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>

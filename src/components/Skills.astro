@@ -1,0 +1,60 @@
+---
+const categories = [
+  {
+    title: 'Languages',
+    icon: '<>',
+    items: ['Python', 'Go', 'Rust', 'Bash', 'JavaScript', 'PowerShell'],
+  },
+  {
+    title: 'Security Tools',
+    icon: '>>',
+    items: ['Burp Suite', 'Metasploit', 'Wireshark', 'Nmap', 'Hashcat', 'Ghidra', 'sqlmap', 'ffuf'],
+  },
+  {
+    title: 'Infrastructure',
+    icon: '~/',
+    items: ['Kali Linux', 'Docker', 'Git', 'Linux Admin', 'Nginx', 'CI/CD'],
+  },
+  {
+    title: 'Focus Areas',
+    icon: '**',
+    items: ['Web App Pentesting', 'Privilege Escalation', 'API Security', 'Code Review', 'OSINT', 'Reverse Engineering'],
+  },
+];
+---
+
+<section id="skills" class="relative py-24 border-t border-border">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Section header -->
+    <div class="mb-16">
+      <div class="font-mono text-sm text-accent mb-3 flex items-center gap-2">
+        <span class="w-8 h-px bg-accent inline-block"></span>
+        03 // Skills
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold">
+        Tech <span class="text-accent">Stack</span>
+      </h2>
+      <p class="mt-4 text-text-secondary max-w-xl">
+        Languages, tools, and platforms I work with daily.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+      {categories.map((cat) => (
+        <div class="bg-bg-surface p-6">
+          <div class="font-mono text-xs uppercase tracking-widest text-accent mb-5 pb-3 border-b border-border flex items-center gap-2">
+            <span class="text-text-muted">{cat.icon}</span>
+            {cat.title}
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {cat.items.map((item) => (
+              <span class="font-mono text-[12px] text-text-secondary bg-bg-elevated border border-border px-3 py-1.5 hover:border-accent/40 hover:text-accent transition-colors">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

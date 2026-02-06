@@ -1,0 +1,101 @@
+---
+import { getCollection } from 'astro:content';
+
+const allWriteups = await getCollection('writeups');
+const writeups = allWriteups
+  .filter((w) => !w.data.draft)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 4);
+
+function categoryColor(category: string) {
+  switch (category.toLowerCase()) {
+    case 'web': return 'text-accent border-accent/30';
+    case 'pwn': return 'text-danger border-danger/30';
+    case 'crypto': return 'text-info border-info/30';
+    case 'forensics': return 'text-warning border-warning/30';
+    case 'cve': return 'text-danger border-danger/30';
+    default: return 'text-text-muted border-border';
+  }
+}
+---
+
+<section id="writeups" class="relative py-24 border-t border-border">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Section header -->
+    <div class="mb-16 flex items-end justify-between">
+      <div>
+        <div class="font-mono text-sm text-accent mb-3 flex items-center gap-2">
+          <span class="w-8 h-px bg-accent inline-block"></span>
+          05 // Research
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold">
+          Latest <span class="text-accent">Writeups</span>
+        </h2>
+        <p class="mt-4 text-text-secondary max-w-xl">
+          CTF solutions, vulnerability analyses, and technical deep-dives into security topics.
+        </p>
+      </div>
+      <a
+        href="/writeups"
+        class="hidden sm:inline-flex items-center gap-2 font-mono text-sm text-text-secondary hover:text-accent transition-colors"
+      >
+        View all
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="square" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+
+    {writeups.length > 0 ? (
+      <div class={`grid gap-px bg-border ${writeups.length > 1 ? 'md:grid-cols-2' : 'grid-cols-1'}`}>
+        {writeups.map((writeup) => (
+          <a
+            href={`/writeups/${writeup.id}`}
+            class="group bg-bg-surface p-6 hover:bg-bg-elevated transition-colors block"
+          >
+            <div class="flex items-center gap-3 mb-3">
+              <span class={`font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border ${categoryColor(writeup.data.category)}`}>
+                {writeup.data.category}
+              </span>
+              <span class="font-mono text-[11px] text-text-muted">
+                {new Date(writeup.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+              </span>
+            </div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-accent transition-colors">
+              {writeup.data.title}
+            </h3>
+            <p class="text-sm text-text-secondary leading-relaxed mb-4">
+              {writeup.data.description}
+            </p>
+            <div class="flex flex-wrap gap-2">
+              {writeup.data.tags.map((tag: string) => (
+                <span class="font-mono text-[10px] text-text-muted">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="border border-dashed border-border p-12 text-center bg-bg-surface">
+        <div class="font-mono text-lg text-text-muted mb-2">No writeups yet</div>
+        <p class="text-sm text-text-muted">
+          Writeups will appear here once published. Check back soon.
+        </p>
+      </div>
+    )}
+
+    <div class="mt-8 text-center sm:hidden">
+      <a
+        href="/writeups"
+        class="inline-flex items-center gap-2 font-mono text-sm text-text-secondary hover:text-accent transition-colors"
+      >
+        View all writeups
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="square" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

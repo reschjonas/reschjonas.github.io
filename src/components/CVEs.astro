@@ -1,0 +1,116 @@
+---
+const cves = [
+  {
+    id: 'CVE-2026-24135',
+    title: 'Arbitrary File Deletion via Path Traversal in Wiki Page Update',
+    severity: 'High',
+    cvss: '7.5',
+    product: 'Gogs',
+    productUrl: 'https://github.com/gogs/gogs',
+    description: 'Path traversal vulnerability in the updateWikiPage function allows authenticated users to delete arbitrary files on the server via the old_title parameter.',
+    affected: '<= 0.13.3',
+    patched: '0.13.4',
+    date: '2026-01-22',
+    status: 'published',
+    advisoryUrl: 'https://github.com/gogs/gogs/security/advisories/GHSA-jp7c-wj6q-3qf2',
+    writeupUrl: '/writeups/cve-2026-24135-gogs-path-traversal',
+  },
+];
+
+function severityColor(severity: string) {
+  switch (severity.toLowerCase()) {
+    case 'critical': return 'text-danger border-danger bg-danger/5';
+    case 'high': return 'text-warning border-warning bg-warning/5';
+    case 'medium': return 'text-info border-info bg-info/5';
+    case 'low': return 'text-text-muted border-text-muted bg-text-muted/5';
+    default: return 'text-text-muted border-border bg-bg-elevated';
+  }
+}
+
+function statusBadge(status: string) {
+  switch (status) {
+    case 'published': return { label: 'Published', class: 'text-accent border-accent' };
+    case 'pending': return { label: 'Pending', class: 'text-warning border-warning' };
+    default: return { label: status, class: 'text-text-muted border-border' };
+  }
+}
+---
+
+<section id="cves" class="relative py-24 border-t border-border">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Section header -->
+    <div class="mb-16">
+      <div class="font-mono text-sm text-accent mb-3 flex items-center gap-2">
+        <span class="w-8 h-px bg-accent inline-block"></span>
+        04 // Vulnerability Research
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold">
+        CVE <span class="text-accent">Disclosures</span>
+      </h2>
+      <p class="mt-4 text-text-secondary max-w-xl">
+        Responsibly disclosed vulnerabilities. Each finding goes through coordinated disclosure with the affected vendor before publication.
+      </p>
+    </div>
+
+    <!-- CVE cards -->
+    {cves.map((cve) => (
+      <div class="border border-border bg-bg-surface hover:bg-bg-elevated transition-colors">
+        <!-- Card header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 px-6 py-4 border-b border-border bg-bg-elevated">
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="font-mono text-sm text-accent font-semibold">{cve.id}</span>
+            <span class={`font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 border ${severityColor(cve.severity)}`}>
+              {cve.severity} — CVSS {cve.cvss}
+            </span>
+            <span class={`font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 border ${statusBadge(cve.status).class}`}>
+              {statusBadge(cve.status).label}
+            </span>
+          </div>
+          <span class="font-mono text-xs text-text-muted">
+            {new Date(cve.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+          </span>
+        </div>
+
+        <!-- Card body -->
+        <div class="px-6 py-5">
+          <h3 class="text-lg font-semibold mb-3">{cve.title}</h3>
+          <p class="text-sm text-text-secondary leading-relaxed mb-5">{cve.description}</p>
+
+          <!-- Details grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+            <div>
+              <div class="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-1">Product</div>
+              <a href={cve.productUrl} target="_blank" rel="noopener noreferrer" class="text-sm text-accent hover:text-accent-hover transition-colors">
+                {cve.product}
+              </a>
+            </div>
+            <div>
+              <div class="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-1">Affected</div>
+              <span class="text-sm font-mono">{cve.affected}</span>
+            </div>
+            <div>
+              <div class="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-1">Patched</div>
+              <span class="text-sm font-mono text-accent">{cve.patched}</span>
+            </div>
+            <div>
+              <div class="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-1">Language</div>
+              <span class="text-sm font-mono">Go</span>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="flex flex-wrap gap-4 pt-3 border-t border-border">
+            <a href={cve.advisoryUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 font-mono text-xs text-text-secondary hover:text-accent transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+              GitHub Advisory
+            </a>
+            <a href={cve.writeupUrl} class="inline-flex items-center gap-2 font-mono text-xs text-text-secondary hover:text-accent transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+              Full Writeup
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
