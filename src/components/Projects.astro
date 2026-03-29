@@ -24,14 +24,6 @@ const projects = [
     stars: 4,
     category: 'Systems',
   },
-  {
-    name: 'CVE-2026-24135',
-    desc: 'Arbitrary File Deletion in Gogs via Wiki Path Traversal. Discovered and responsibly disclosed.',
-    tech: ['Web Security', 'Research'],
-    url: 'https://github.com/reschjonas/CVE-2026-24135',
-    stars: null,
-    category: 'Vulnerability Research',
-  },
 ];
 ---
 
@@ -44,15 +36,15 @@ const projects = [
         02 // Projects
       </div>
       <h2 class="text-3xl md:text-4xl font-bold">
-        Security <span class="text-accent">Arsenal</span>
+        <span class="text-accent">Projects</span>
       </h2>
       <p class="mt-4 text-text-secondary max-w-xl">
-        Open-source offensive security tools and utilities built for real-world pentesting workflows.
+        Open-source tools and utilities I've built and maintain.
       </p>
     </div>
 
     <!-- Projects grid -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+    <div class="grid md:grid-cols-3 gap-px bg-border">
       {projects.map((project) => (
         <a
           href={project.url}
