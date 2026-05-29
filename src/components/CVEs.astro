@@ -37,7 +37,7 @@ function statusBadge(status: string) {
 ---
 
 <section id="cves" class="relative py-24 border-t border-border">
-  <div class="max-w-6xl mx-auto px-6">
+  <div class="max-w-6xl mx-auto px-6" data-reveal>
     <!-- Section header -->
     <div class="mb-16">
       <div class="font-mono text-sm text-accent mb-3 flex items-center gap-2">
@@ -53,14 +53,15 @@ function statusBadge(status: string) {
     </div>
 
     <!-- CVE cards -->
+    <div class="space-y-6" data-reveal-group>
     {cves.map((cve) => (
-      <div class="border border-border bg-bg-surface hover:bg-bg-elevated transition-colors">
+      <div data-reveal-item class="group relative overflow-hidden border border-border bg-bg-surface hover:bg-bg-elevated transition-colors"><span class="absolute top-0 left-0 h-px w-0 bg-danger transition-all duration-500 ease-out group-hover:w-full z-10"></span>
         <!-- Card header -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 px-6 py-4 border-b border-border bg-bg-elevated">
           <div class="flex items-center gap-3 flex-wrap">
             <span class="font-mono text-sm text-accent font-semibold">{cve.id}</span>
             <span class={`font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 border ${severityColor(cve.severity)}`}>
-              {cve.severity} — CVSS {cve.cvss}
+              {cve.severity} · CVSS {cve.cvss}
             </span>
             <span class={`font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 border ${statusBadge(cve.status).class}`}>
               {statusBadge(cve.status).label}
@@ -112,5 +113,6 @@ function statusBadge(status: string) {
         </div>
       </div>
     ))}
+    </div>
   </div>
 </section>

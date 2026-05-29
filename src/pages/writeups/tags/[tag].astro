@@ -1,0 +1,65 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Nav from '../../../components/Nav.astro';
+import {
+  getPublishedWriteups,
+  getAllTags,
+  getSlug,
+  formatDate,
+  readingTime,
+  typeColor,
+  TYPE_LABELS,
+} from '../../../lib/writeups';
+
+export async function getStaticPaths() {
+  const tags = await getAllTags();
+  return tags.map((tag) => ({ params: { tag }, props: { tag } }));
+}
+
+const { tag } = Astro.props;
+const all = await getPublishedWriteups();
+const writeups = all.filter((w) => w.data.tags.includes(tag));
+---
+
+<Layout title={`#${tag} | Jonas Resch`} description={`Writeups tagged #${tag}.`}>
+  <Nav />
+  <main class="pt-14">
+    <section class="py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <a href="/writeups" class="font-mono text-sm text-text-muted hover:text-accent transition-colors mb-6 inline-flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="square" stroke-width="2" d="M7 17L3 12m0 0l4-5m-4 5h18" />
+          </svg>
+          All writeups
+        </a>
+        <h1 class="text-4xl md:text-5xl font-bold mt-4">
+          <span class="text-text-muted">#</span><span class="text-accent">{tag}</span>
+        </h1>
+        <p class="mt-4 text-text-secondary">
+          {writeups.length} {writeups.length === 1 ? 'writeup' : 'writeups'} tagged with this topic.
+        </p>
+
+        <div class="space-y-px mt-12">
+          {writeups.map((writeup) => (
+            <a
+              href={`/writeups/${getSlug(writeup)}`}
+              class="group flex flex-col md:flex-row md:items-center gap-4 p-6 bg-bg-surface hover:bg-bg-elevated border border-border transition-colors"
+            >
+              <div class="flex items-center gap-3 md:w-44 flex-shrink-0">
+                <span class={`font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border ${typeColor(writeup.data.type)}`}>
+                  {TYPE_LABELS[writeup.data.type]}
+                </span>
+                <span class="font-mono text-[11px] text-text-muted">{formatDate(writeup.data.date)}</span>
+              </div>
+              <div class="flex-1">
+                <h2 class="text-lg font-semibold group-hover:text-accent transition-colors">{writeup.data.title}</h2>
+                <p class="text-sm text-text-secondary mt-1">{writeup.data.description}</p>
+              </div>
+              <span class="font-mono text-[11px] text-text-muted flex-shrink-0">{readingTime(writeup.body)} min read</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

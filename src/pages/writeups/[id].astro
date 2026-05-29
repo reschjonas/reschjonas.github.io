@@ -1,32 +1,43 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Nav from '../../components/Nav.astro';
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
+import {
+  getPublishedWriteups,
+  getSlug,
+  readingTime,
+  formatDateLong,
+  typeColor,
+  severityColor,
+  difficultyColor,
+  TYPE_LABELS,
+} from '../../lib/writeups';
 
 export async function getStaticPaths() {
-  const writeups = await getCollection('writeups');
-  return writeups.map((writeup) => ({
-    params: { id: writeup.id },
-    props: { writeup },
+  // Only published writeups get a page; drafts stay unreachable.
+  const writeups = await getPublishedWriteups();
+  return writeups.map((writeup, i) => ({
+    params: { id: getSlug(writeup) },
+    props: {
+      writeup,
+      prev: writeups[i + 1]
+        ? { slug: getSlug(writeups[i + 1]), title: writeups[i + 1].data.title }
+        : null,
+      next: writeups[i - 1]
+        ? { slug: getSlug(writeups[i - 1]), title: writeups[i - 1].data.title }
+        : null,
+    },
   }));
 }
 
-const { writeup } = Astro.props;
-const { Content } = await render(writeup);
-
-function categoryColor(category: string) {
-  switch (category.toLowerCase()) {
-    case 'web': return 'text-accent border-accent/30';
-    case 'pwn': return 'text-danger border-danger/30';
-    case 'crypto': return 'text-info border-info/30';
-    case 'forensics': return 'text-warning border-warning/30';
-    case 'cve': return 'text-danger border-danger/30';
-    default: return 'text-text-muted border-border';
-  }
-}
+const { writeup, prev, next } = Astro.props;
+const { Content, headings } = await render(writeup);
+const data = writeup.data;
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const mins = readingTime(writeup.body);
 ---
 
-<Layout title={`${writeup.data.title} | Jonas Resch`} description={writeup.data.description}>
+<Layout title={`${data.title} | Jonas Resch`} description={data.description}>
   <Nav />
   <main class="pt-14">
     <article class="py-24">
@@ -41,31 +52,110 @@ function categoryColor(category: string) {
 
         <!-- Article header -->
         <header class="mt-6 mb-12">
-          <div class="flex items-center gap-3 mb-4">
-            <span class={`font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border ${categoryColor(writeup.data.category)}`}>
-              {writeup.data.category}
+          <div class="flex items-center gap-3 mb-4 flex-wrap">
+            <span class={`font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border ${typeColor(data.type)}`}>
+              {TYPE_LABELS[data.type]}
             </span>
             <span class="font-mono text-[11px] text-text-muted">
-              {new Date(writeup.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              {formatDateLong(data.date)}
             </span>
+            <span class="font-mono text-[11px] text-text-muted">·</span>
+            <span class="font-mono text-[11px] text-text-muted">{mins} min read</span>
           </div>
           <h1 class="text-3xl md:text-4xl font-bold leading-tight">
-            {writeup.data.title}
+            {data.title}
           </h1>
           <p class="mt-4 text-text-secondary text-lg leading-relaxed">
-            {writeup.data.description}
+            {data.description}
           </p>
+
+          {/* Per-type metadata strip */}
+          {data.type === 'cve' && (
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-px bg-border border border-border mt-6">
+              {data.cveId && (
+                <div class="bg-bg-surface px-4 py-3">
+                  <div class="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-1">CVE</div>
+                  <div class="font-mono text-sm text-accent">{data.cveId}</div>
+                </div>
+              )}
+              {data.severity && (
+                <div class="bg-bg-surface px-4 py-3">
+                  <div class="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-1">Severity</div>
+                  <span class={`inline-block font-mono text-[11px] uppercase px-2 py-0.5 border ${severityColor(data.severity)}`}>
+                    {data.severity}{data.cvss ? ` · ${data.cvss}` : ''}
+                  </span>
+                </div>
+              )}
+              {data.product && (
+                <div class="bg-bg-surface px-4 py-3">
+                  <div class="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-1">Product</div>
+                  <div class="font-mono text-sm">{data.product}</div>
+                </div>
+              )}
+              {data.patched && (
+                <div class="bg-bg-surface px-4 py-3">
+                  <div class="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-1">Patched</div>
+                  <div class="font-mono text-sm text-accent">{data.patched}</div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {data.type === 'htb' && (
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-px bg-border border border-border mt-6">
+              {data.box && (
+                <div class="bg-bg-surface px-4 py-3">
+                  <div class="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-1">Machine</div>
+                  <div class="font-mono text-sm text-accent">{data.box}</div>
+                </div>
+              )}
+              {data.difficulty && (
+                <div class="bg-bg-surface px-4 py-3">
+                  <div class="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-1">Difficulty</div>
+                  <span class={`inline-block font-mono text-[11px] uppercase px-2 py-0.5 border ${difficultyColor(data.difficulty)}`}>
+                    {data.difficulty}
+                  </span>
+                </div>
+              )}
+              {data.os && (
+                <div class="bg-bg-surface px-4 py-3">
+                  <div class="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-1">OS</div>
+                  <div class="font-mono text-sm capitalize">{data.os}</div>
+                </div>
+              )}
+            </div>
+          )}
+
           <div class="flex flex-wrap gap-2 mt-6">
-            {writeup.data.tags.map((tag: string) => (
-              <span class="font-mono text-[10px] text-text-muted border border-border px-2 py-0.5">
+            {data.tags.map((tag: string) => (
+              <a href={`/writeups/tags/${tag}`} class="font-mono text-[10px] text-text-muted border border-border px-2 py-0.5 hover:border-accent/40 hover:text-accent transition-colors">
                 #{tag}
-              </span>
+              </a>
             ))}
           </div>
         </header>
 
         <!-- Divider -->
         <div class="h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent mb-12"></div>
+
+        {/* Table of contents */}
+        {toc.length > 2 && (
+          <details class="mb-12 border border-border bg-bg-surface" open>
+            <summary class="font-mono text-[11px] uppercase tracking-widest text-accent px-4 py-3 cursor-pointer select-none">
+              Contents
+            </summary>
+            <nav class="px-4 pb-4 pt-1 space-y-1">
+              {toc.map((h) => (
+                <a
+                  href={`#${h.slug}`}
+                  class={`block font-mono text-sm text-text-secondary hover:text-accent transition-colors ${h.depth === 3 ? 'pl-4 text-xs' : ''}`}
+                >
+                  {h.text}
+                </a>
+              ))}
+            </nav>
+          </details>
+        )}
 
         <!-- Content -->
         <div class="prose max-w-none">
@@ -74,6 +164,24 @@ function categoryColor(category: string) {
 
         <!-- Footer divider -->
         <div class="h-px bg-border mt-16 mb-8"></div>
+
+        {/* Prev / next navigation */}
+        {(prev || next) && (
+          <nav class="grid sm:grid-cols-2 gap-px bg-border border border-border mb-8">
+            {prev ? (
+              <a href={`/writeups/${prev.slug}`} class="group bg-bg-surface hover:bg-bg-elevated p-5 transition-colors">
+                <div class="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-1">← Older</div>
+                <div class="text-sm text-text-secondary group-hover:text-accent transition-colors">{prev.title}</div>
+              </a>
+            ) : <div class="bg-bg-surface"></div>}
+            {next ? (
+              <a href={`/writeups/${next.slug}`} class="group bg-bg-surface hover:bg-bg-elevated p-5 transition-colors sm:text-right">
+                <div class="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-1">Newer →</div>
+                <div class="text-sm text-text-secondary group-hover:text-accent transition-colors">{next.title}</div>
+              </a>
+            ) : <div class="bg-bg-surface"></div>}
+          </nav>
+        )}
 
         <!-- Article footer -->
         <div class="flex items-center justify-between">
@@ -84,7 +192,7 @@ function categoryColor(category: string) {
             All writeups
           </a>
           <span class="font-mono text-xs text-text-muted">
-            Jonas Resch &mdash; {new Date(writeup.data.date).getFullYear()}
+            Jonas Resch &middot; {new Date(data.date).getFullYear()}
           </span>
         </div>
       </div>

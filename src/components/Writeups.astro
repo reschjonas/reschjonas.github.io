@@ -1,38 +1,30 @@
 ---
-import { getCollection } from 'astro:content';
+import {
+  getPublishedWriteups,
+  getSlug,
+  formatDate,
+  readingTime,
+  typeColor,
+  TYPE_LABELS,
+} from '../lib/writeups';
 
-const allWriteups = await getCollection('writeups');
-const writeups = allWriteups
-  .filter((w) => !w.data.draft)
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
-  .slice(0, 4);
-
-function categoryColor(category: string) {
-  switch (category.toLowerCase()) {
-    case 'web': return 'text-accent border-accent/30';
-    case 'pwn': return 'text-danger border-danger/30';
-    case 'crypto': return 'text-info border-info/30';
-    case 'forensics': return 'text-warning border-warning/30';
-    case 'cve': return 'text-danger border-danger/30';
-    default: return 'text-text-muted border-border';
-  }
-}
+const writeups = (await getPublishedWriteups()).slice(0, 4);
 ---
 
 <section id="writeups" class="relative py-24 border-t border-border">
-  <div class="max-w-6xl mx-auto px-6">
+  <div class="max-w-6xl mx-auto px-6" data-reveal>
     <!-- Section header -->
     <div class="mb-16 flex items-end justify-between">
       <div>
         <div class="font-mono text-sm text-accent mb-3 flex items-center gap-2">
           <span class="w-8 h-px bg-accent inline-block"></span>
-          05 // Research
+          05 // Research &amp; Writing
         </div>
         <h2 class="text-3xl md:text-4xl font-bold">
           Latest <span class="text-accent">Writeups</span>
         </h2>
         <p class="mt-4 text-text-secondary max-w-xl">
-          CTF solutions, vulnerability analyses, and technical deep-dives into security topics.
+          CVE disclosures, HackTheBox machines, and technical deep-dives into security topics.
         </p>
       </div>
       <a
@@ -47,19 +39,23 @@ function categoryColor(category: string) {
     </div>
 
     {writeups.length > 0 ? (
-      <div class={`grid gap-px bg-border ${writeups.length > 1 ? 'md:grid-cols-2' : 'grid-cols-1'}`}>
+      <div class={`grid gap-px bg-border ${writeups.length > 1 ? 'md:grid-cols-2' : 'grid-cols-1'}`} data-reveal-group>
         {writeups.map((writeup) => (
           <a
-            href={`/writeups/${writeup.id}`}
-            class="group bg-bg-surface p-6 hover:bg-bg-elevated transition-colors block"
+            href={`/writeups/${getSlug(writeup)}`}
+            data-reveal-item
+            class="group relative bg-bg-surface p-6 hover:bg-bg-elevated transition-colors block"
           >
+            <span class="absolute top-0 left-0 h-px w-0 bg-accent transition-all duration-500 ease-out group-hover:w-full"></span>
             <div class="flex items-center gap-3 mb-3">
-              <span class={`font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border ${categoryColor(writeup.data.category)}`}>
-                {writeup.data.category}
+              <span class={`font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border ${typeColor(writeup.data.type)}`}>
+                {TYPE_LABELS[writeup.data.type]}
               </span>
               <span class="font-mono text-[11px] text-text-muted">
-                {new Date(writeup.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                {formatDate(writeup.data.date)}
               </span>
+              <span class="font-mono text-[11px] text-text-muted">·</span>
+              <span class="font-mono text-[11px] text-text-muted">{readingTime(writeup.body)} min</span>
             </div>
             <h3 class="text-lg font-semibold mb-2 group-hover:text-accent transition-colors">
               {writeup.data.title}

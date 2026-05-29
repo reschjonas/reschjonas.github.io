@@ -2,7 +2,7 @@
 const projects = [
   {
     name: 'FlipperZero BadUSB',
-    desc: 'Next-generation modular payload system for Flipper Zero BadUSB — advanced DuckyScript payloads with remote module loading.',
+    desc: 'Next-generation modular payload system for Flipper Zero BadUSB, with advanced DuckyScript payloads and remote module loading.',
     tech: ['Python', 'PowerShell'],
     url: 'https://github.com/reschjonas/FlipperZero_BadUSB',
     stars: 10,
@@ -28,7 +28,7 @@ const projects = [
 ---
 
 <section id="projects" class="relative py-24 border-t border-border">
-  <div class="max-w-6xl mx-auto px-6">
+  <div class="max-w-6xl mx-auto px-6" data-reveal>
     <!-- Section header -->
     <div class="mb-16">
       <div class="font-mono text-sm text-accent mb-3 flex items-center gap-2">
@@ -44,14 +44,16 @@ const projects = [
     </div>
 
     <!-- Projects grid -->
-    <div class="grid md:grid-cols-3 gap-px bg-border">
+    <div class="grid md:grid-cols-3 gap-px bg-border" data-reveal-group>
       {projects.map((project) => (
         <a
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          class="group bg-bg-surface p-6 hover:bg-bg-elevated transition-colors block"
+          data-reveal-item
+          class="group relative bg-bg-surface p-6 hover:bg-bg-elevated transition-colors block"
         >
+          <span class="absolute top-0 left-0 h-px w-0 bg-accent transition-all duration-500 ease-out group-hover:w-full"></span>
           <!-- Header -->
           <div class="flex items-start justify-between mb-4">
             <div>

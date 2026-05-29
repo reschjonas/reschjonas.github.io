@@ -75,6 +75,11 @@ html {
   scrollbar-color: var(--color-border) var(--color-bg);
 }
 
+/* Offset anchored sections so they don't hide behind the fixed nav. */
+section[id] {
+  scroll-margin-top: 3.5rem;
+}
+
 body {
   font-family: var(--font-family-sans);
   background-color: var(--color-bg);
@@ -241,6 +246,32 @@ code {
 
 .animate-blink {
   animation: terminalBlink 1s step-end infinite;
+}
+
+/* ── Scroll reveal ── */
+.js [data-reveal],
+.js [data-reveal-item] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.js [data-reveal].is-visible,
+.js [data-reveal-item].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal],
+  .js [data-reveal-item] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* staggered animation delays */

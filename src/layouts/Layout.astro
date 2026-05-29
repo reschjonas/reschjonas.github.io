@@ -6,12 +6,17 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Jonas Resch — Security Researcher, Pentester & CS Student. Building offensive security tools and publishing vulnerability research.' } = Astro.props;
+const { title, description = 'Jonas Resch: CS student specializing in IT security. HackTheBox boot-to-root, vulnerability research (CVE-2026-24135), and offensive AI.' } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
+    <script is:inline>
+      // Mark JS as available so reveal animations only hide content when we can
+      // actually reveal it again (no-JS users see everything immediately).
+      document.documentElement.classList.add('js');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
@@ -37,5 +42,41 @@ const { title, description = 'Jonas Resch — Security Researcher, Pentester & C
   </head>
   <body class="min-h-screen bg-bg text-text-primary">
     <slot />
+    <script>
+      // Reveal elements tagged with `data-reveal` as they scroll into view.
+      // Respects reduced-motion and degrades gracefully without JS (CSS shows
+      // everything when the `js` class is absent).
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const singles = document.querySelectorAll('[data-reveal]');
+      const groups = document.querySelectorAll('[data-reveal-group]');
+      const allItems = document.querySelectorAll('[data-reveal], [data-reveal-item]');
+
+      if (reduce || !('IntersectionObserver' in window)) {
+        allItems.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const target = entry.target as HTMLElement;
+              if (target.hasAttribute('data-reveal-group')) {
+                // Stagger the direct children of a group as it scrolls in.
+                const items = target.querySelectorAll<HTMLElement>('[data-reveal-item]');
+                items.forEach((item, i) => {
+                  item.style.transitionDelay = `${i * 70}ms`;
+                  item.classList.add('is-visible');
+                });
+              } else {
+                target.classList.add('is-visible');
+              }
+              observer.unobserve(target);
+            });
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.12 }
+        );
+        singles.forEach((el) => io.observe(el));
+        groups.forEach((el) => io.observe(el));
+      }
+    </script>
   </body>
 </html>

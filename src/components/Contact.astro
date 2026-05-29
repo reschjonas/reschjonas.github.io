@@ -34,7 +34,7 @@ const links = [
 ---
 
 <section id="contact" class="relative py-24 border-t border-border">
-  <div class="max-w-6xl mx-auto px-6">
+  <div class="max-w-6xl mx-auto px-6" data-reveal>
     <!-- Section header -->
     <div class="mb-16">
       <div class="font-mono text-sm text-accent mb-3 flex items-center gap-2">
@@ -50,15 +50,16 @@ const links = [
     </div>
 
     <!-- Contact links -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-px bg-border">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-px bg-border" data-reveal-group>
       {links.map((link) => (
         <a
           href={link.url}
           target={link.url.startsWith('mailto') ? undefined : '_blank'}
           rel={link.url.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+          data-reveal-item
           class="group bg-bg-surface p-6 hover:bg-bg-elevated transition-colors flex items-center gap-4"
         >
-          <div class="text-text-muted group-hover:text-accent transition-colors flex-shrink-0" set:html={link.icon} />
+          <div class="text-text-muted group-hover:text-accent transition-all duration-300 group-hover:-translate-y-0.5 flex-shrink-0" set:html={link.icon} />
           <div>
             <div class="text-sm font-semibold group-hover:text-accent transition-colors">{link.name}</div>
             <div class="font-mono text-xs text-text-muted break-all">{link.desc}</div>
