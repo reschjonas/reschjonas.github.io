@@ -1,19 +1,22 @@
 ---
 const links = [
-  { label: 'About', href: '/#about' },
-  { label: 'Projects', href: '/#projects' },
-  { label: 'Skills', href: '/#skills' },
-  { label: 'CVEs', href: '/#cves' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'About', href: '/#about', section: 'about' },
+  { label: 'Skills', href: '/#skills', section: 'skills' },
+  { label: 'CVEs', href: '/#cves', section: 'cves' },
+  { label: 'Contact', href: '/#contact', section: 'contact' },
 ];
 ---
 
-<nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-  <div class="border-b border-border bg-bg/80 backdrop-blur-md">
-    <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+<!-- Scroll progress -->
+<div id="scroll-progress" class="fixed top-0 left-0 z-[60] h-0.5 w-0 bg-gradient-to-r from-accent to-warning"></div>
+
+<nav class="fixed top-0 inset-x-0 z-50">
+  <div class="max-w-5xl mx-auto px-4 mt-3">
+    <div class="flex items-center justify-between gap-3 rounded-2xl border border-border bg-bg/60 backdrop-blur-xl px-3 py-2 shadow-lg shadow-black/30">
       <!-- Logo -->
-      <a href="/" class="font-mono text-accent font-bold text-sm tracking-wider hover:text-accent-hover transition-colors">
-        Jonas Resch
+      <a href="/" class="flex items-center gap-2 pl-1 font-mono text-sm font-bold tracking-wider group">
+        <span class="grid place-items-center w-7 h-7 rounded-lg border border-accent/30 bg-accent/10 text-accent text-xs group-hover:bg-accent/20 transition-colors">JR</span>
+        <span class="hidden sm:inline text-text-primary group-hover:text-accent transition-colors">resch.jonas</span>
       </a>
 
       <!-- Desktop nav -->
@@ -21,41 +24,42 @@ const links = [
         {links.map((link) => (
           <a
             href={link.href}
-            class="px-3 py-1.5 text-sm text-text-secondary hover:text-accent transition-colors font-mono"
+            data-section={link.section}
+            class="nav-link relative px-3 py-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors font-mono rounded-lg"
           >
             {link.label}
           </a>
         ))}
         <a
           href="/writeups"
-          class="ml-2 px-3 py-1.5 text-sm border border-accent text-accent hover:bg-accent hover:text-bg transition-all font-mono"
+          class="ml-1 px-3 py-1.5 text-sm rounded-lg bg-accent/10 border border-accent/30 text-accent hover:bg-accent hover:text-bg transition-all font-mono"
         >
-          all writeups
+          writeups
         </a>
       </div>
 
       <!-- Mobile hamburger -->
-      <button id="mobile-toggle" class="md:hidden text-text-secondary hover:text-accent transition-colors p-1" aria-label="Toggle navigation">
+      <button id="mobile-toggle" class="md:hidden grid place-items-center w-9 h-9 rounded-lg text-text-secondary hover:text-accent hover:bg-bg-elevated transition-colors" aria-label="Toggle navigation">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path id="hamburger-icon" stroke-linecap="square" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
 
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-bg/95 backdrop-blur-md">
-      <div class="px-6 py-4 flex flex-col gap-1">
+    <div id="mobile-menu" class="hidden md:hidden mt-2 rounded-2xl border border-border bg-bg/90 backdrop-blur-xl p-2 shadow-lg shadow-black/30">
+      <div class="flex flex-col gap-1">
         {links.map((link) => (
           <a
             href={link.href}
-            class="mobile-link px-3 py-2 text-sm text-text-secondary hover:text-accent transition-colors font-mono"
+            class="mobile-link px-3 py-2.5 text-sm text-text-secondary hover:text-accent hover:bg-bg-elevated rounded-lg transition-colors font-mono"
           >
             {link.label}
           </a>
         ))}
         <a
           href="/writeups"
-          class="mobile-link mt-2 px-3 py-2 text-sm border border-accent text-accent hover:bg-accent hover:text-bg transition-all font-mono text-center"
+          class="mobile-link mt-1 px-3 py-2.5 text-sm rounded-lg bg-accent/10 border border-accent/30 text-accent hover:bg-accent hover:text-bg transition-all font-mono text-center"
         >
           all writeups
         </a>
@@ -65,17 +69,49 @@ const links = [
 </nav>
 
 <script>
+  // Mobile menu toggle
   const toggle = document.getElementById('mobile-toggle');
   const menu = document.getElementById('mobile-menu');
-
-  toggle?.addEventListener('click', () => {
-    menu?.classList.toggle('hidden');
+  toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+  document.querySelectorAll('.mobile-link').forEach((link) => {
+    link.addEventListener('click', () => menu?.classList.add('hidden'));
   });
 
-  // Close mobile menu on link click
-  document.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', () => {
-      menu?.classList.add('hidden');
-    });
-  });
+  // Scroll progress bar
+  const progress = document.getElementById('scroll-progress');
+  const onScroll = () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    if (progress) progress.style.width = `${pct}%`;
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Active-section scrollspy (homepage only)
+  const navLinks = Array.from(document.querySelectorAll<HTMLElement>('.nav-link'));
+  const sections = navLinks
+    .map((l) => document.getElementById(l.dataset.section || ''))
+    .filter((el): el is HTMLElement => el !== null);
+
+  if (sections.length && 'IntersectionObserver' in window) {
+    const setActive = (id: string | null) => {
+      navLinks.forEach((l) => {
+        const on = l.dataset.section === id;
+        l.classList.toggle('text-accent', on);
+        l.classList.toggle('bg-accent/10', on);
+        l.classList.toggle('text-text-secondary', !on);
+      });
+    };
+    const spy = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5, 1] }
+    );
+    sections.forEach((s) => spy.observe(s));
+  }
 </script>

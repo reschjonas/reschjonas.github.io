@@ -24,7 +24,8 @@ const focusAreas = [
 ---
 
 <section id="about" class="relative py-16 md:py-24 border-t border-border">
-  <div class="max-w-6xl mx-auto px-6" data-reveal>
+  <div class="relative max-w-6xl mx-auto px-6" data-reveal>
+    <span class="pointer-events-none absolute right-6 -top-6 md:-top-10 font-mono font-extrabold text-[5rem] md:text-[8rem] leading-none text-text-primary/[0.035] select-none">01</span>
     <!-- Section header -->
     <div class="mb-10 md:mb-16">
       <div class="font-mono text-sm text-accent mb-3 flex items-center gap-2">
@@ -32,7 +33,7 @@ const focusAreas = [
         01 // About
       </div>
       <h2 class="text-3xl md:text-4xl font-bold">
-        About <span class="text-accent">Me</span>
+        About <span class="text-gradient">Me</span>
       </h2>
     </div>
 
@@ -63,7 +64,7 @@ const focusAreas = [
         {focusAreas.map((area) => (
           <div
             data-reveal-item
-            class="group relative overflow-hidden border border-border p-6 bg-bg-surface transition-all duration-300 hover:border-accent/40 hover:-translate-y-1 hover:bg-bg-elevated"
+            class="group relative overflow-hidden rounded-2xl border border-border p-6 bg-bg-surface transition-all duration-300 hover:border-accent/40 hover:-translate-y-1 hover:bg-bg-elevated"
           >
             <span class="absolute top-0 left-0 h-px w-0 bg-accent transition-all duration-500 ease-out group-hover:w-full"></span>
             <div class="font-mono text-accent text-xs mb-3 flex items-center gap-2">

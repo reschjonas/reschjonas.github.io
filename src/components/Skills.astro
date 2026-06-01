@@ -24,15 +24,16 @@ const categories = [
 ---
 
 <section id="skills" class="relative py-16 md:py-24 border-t border-border">
-  <div class="max-w-6xl mx-auto px-6" data-reveal>
+  <div class="relative max-w-6xl mx-auto px-6" data-reveal>
+    <span class="pointer-events-none absolute right-6 -top-6 md:-top-10 font-mono font-extrabold text-[5rem] md:text-[8rem] leading-none text-text-primary/[0.035] select-none">02</span>
     <!-- Section header -->
     <div class="mb-10 md:mb-16">
       <div class="font-mono text-sm text-accent mb-3 flex items-center gap-2">
         <span class="w-8 h-px bg-accent inline-block"></span>
-        03 // Skills
+        02 // Skills
       </div>
       <h2 class="text-3xl md:text-4xl font-bold">
-        Tech <span class="text-accent">Stack</span>
+        Tech <span class="text-gradient">Stack</span>
       </h2>
       <p class="mt-4 text-text-secondary max-w-xl">
         The tools I reach for most across recon, exploitation, and post-exploitation. A representative slice, not the full list.
@@ -43,7 +44,7 @@ const categories = [
       {categories.map((cat, i) => (
         <div
           data-reveal-item
-          class="group relative overflow-hidden bg-bg-surface border border-border p-6 transition-all duration-300 hover:border-accent/30 hover:-translate-y-1 hover:bg-bg-elevated"
+          class="group relative overflow-hidden rounded-2xl bg-bg-surface border border-border p-6 transition-all duration-300 hover:border-accent/30 hover:-translate-y-1 hover:bg-bg-elevated"
         >
           {/* Animated top accent line */}
           <span class="absolute top-0 left-0 h-px w-0 bg-accent transition-all duration-500 ease-out group-hover:w-full"></span>
@@ -52,7 +53,7 @@ const categories = [
 
           <div class="flex items-center justify-between mb-5 pb-3 border-b border-border">
             <div class="flex items-center gap-3">
-              <span class="flex items-center justify-center w-8 h-8 border border-border bg-bg-elevated font-mono text-xs text-accent transition-colors duration-300 group-hover:border-accent/50 group-hover:bg-accent/5">
+              <span class="flex items-center justify-center w-8 h-8 rounded-lg border border-border bg-bg-elevated font-mono text-xs text-accent transition-colors duration-300 group-hover:border-accent/50 group-hover:bg-accent/5">
                 {cat.icon}
               </span>
               <span class="font-mono text-xs uppercase tracking-widest text-text-primary">
@@ -64,7 +65,7 @@ const categories = [
 
           <div class="flex flex-wrap gap-2">
             {cat.items.map((item) => (
-              <span class="font-mono text-[12px] text-text-secondary bg-bg-elevated/60 border border-border px-2.5 py-1 transition-all duration-200 hover:border-accent/50 hover:text-accent hover:-translate-y-0.5">
+              <span class="font-mono text-[12px] text-text-secondary bg-bg-elevated/60 border border-border rounded-md px-2.5 py-1 transition-all duration-200 hover:border-accent/50 hover:text-accent hover:-translate-y-0.5">
                 {item}
               </span>
             ))}

@@ -34,15 +34,16 @@ const links = [
 ---
 
 <section id="contact" class="relative py-16 md:py-24 border-t border-border">
-  <div class="max-w-6xl mx-auto px-6" data-reveal>
+  <div class="relative max-w-6xl mx-auto px-6" data-reveal>
+    <span class="pointer-events-none absolute right-6 -top-6 md:-top-10 font-mono font-extrabold text-[5rem] md:text-[8rem] leading-none text-text-primary/[0.035] select-none">05</span>
     <!-- Section header -->
     <div class="mb-10 md:mb-16">
       <div class="font-mono text-sm text-accent mb-3 flex items-center gap-2">
         <span class="w-8 h-px bg-accent inline-block"></span>
-        06 // Contact
+        05 // Contact
       </div>
       <h2 class="text-3xl md:text-4xl font-bold">
-        Get in <span class="text-accent">Touch</span>
+        Get in <span class="text-gradient">Touch</span>
       </h2>
       <p class="mt-4 text-text-secondary max-w-xl">
         Interested in collaboration, responsible disclosure, or just want to talk security? Reach out.
@@ -50,14 +51,14 @@ const links = [
     </div>
 
     <!-- Contact links -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-px bg-border" data-reveal-group>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3" data-reveal-group>
       {links.map((link) => (
         <a
           href={link.url}
           target={link.url.startsWith('mailto') ? undefined : '_blank'}
           rel={link.url.startsWith('mailto') ? undefined : 'noopener noreferrer'}
           data-reveal-item
-          class="group bg-bg-surface p-6 hover:bg-bg-elevated transition-colors flex items-center gap-4"
+          class="group rounded-xl border border-border bg-bg-surface p-6 hover:border-accent/40 hover:-translate-y-1 hover:bg-bg-elevated transition-all duration-300 flex items-center gap-4"
         >
           <div class="text-text-muted group-hover:text-accent transition-all duration-300 group-hover:-translate-y-0.5 flex-shrink-0" set:html={link.icon} />
           <div>

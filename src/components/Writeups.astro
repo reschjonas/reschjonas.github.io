@@ -12,16 +12,17 @@ const writeups = (await getPublishedWriteups()).slice(0, 4);
 ---
 
 <section id="writeups" class="relative py-16 md:py-24 border-t border-border">
-  <div class="max-w-6xl mx-auto px-6" data-reveal>
+  <div class="relative max-w-6xl mx-auto px-6" data-reveal>
+    <span class="pointer-events-none absolute right-6 -top-6 md:-top-10 font-mono font-extrabold text-[5rem] md:text-[8rem] leading-none text-text-primary/[0.035] select-none">04</span>
     <!-- Section header -->
     <div class="mb-10 md:mb-16 flex items-end justify-between">
       <div>
         <div class="font-mono text-sm text-accent mb-3 flex items-center gap-2">
           <span class="w-8 h-px bg-accent inline-block"></span>
-          05 // Research &amp; Writing
+          04 // Research &amp; Writing
         </div>
         <h2 class="text-3xl md:text-4xl font-bold">
-          Latest <span class="text-accent">Writeups</span>
+          Latest <span class="text-gradient">Writeups</span>
         </h2>
         <p class="mt-4 text-text-secondary max-w-xl">
           CVE disclosures, HackTheBox machines, and technical deep-dives into security topics.
@@ -39,12 +40,12 @@ const writeups = (await getPublishedWriteups()).slice(0, 4);
     </div>
 
     {writeups.length > 0 ? (
-      <div class={`grid gap-px bg-border ${writeups.length > 1 ? 'md:grid-cols-2' : 'grid-cols-1'}`} data-reveal-group>
+      <div class={`grid gap-4 ${writeups.length > 1 ? 'md:grid-cols-2' : 'grid-cols-1'}`} data-reveal-group>
         {writeups.map((writeup) => (
           <a
             href={`/writeups/${getSlug(writeup)}`}
             data-reveal-item
-            class="group relative bg-bg-surface p-6 hover:bg-bg-elevated transition-colors block"
+            class="group relative overflow-hidden rounded-2xl border border-border bg-bg-surface p-6 hover:border-accent/40 hover:-translate-y-1 hover:bg-bg-elevated transition-all duration-300 block"
           >
             <span class="absolute top-0 left-0 h-px w-0 bg-accent transition-all duration-500 ease-out group-hover:w-full"></span>
             <div class="flex items-center gap-3 mb-3">

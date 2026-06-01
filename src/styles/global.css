@@ -1,72 +1,23 @@
 @import "tailwindcss";
 
-/* ── Custom Fonts ── */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FPP0880wNqRN87RSGl.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FPP0880wNqRN87RSGl.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
-}
-
-/* ── Theme tokens ── */
+/* ── Theme tokens — Midnight + Ember ── */
 @theme {
-  --color-bg: #07080a;
-  --color-bg-surface: #0d0f12;
-  --color-bg-elevated: #12151a;
-  --color-border: #1e2329;
-  --color-border-accent: #00e5a0;
-  --color-text-primary: #e4e7eb;
-  --color-text-secondary: #8b929b;
-  --color-text-muted: #555d68;
-  --color-accent: #00e5a0;
-  --color-accent-dim: #00e5a033;
-  --color-accent-hover: #00ffb3;
-  --color-danger: #ff4757;
-  --color-warning: #ffa348;
-  --color-info: #4dabf7;
-  --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-family-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+  --color-bg: #0d1117;
+  --color-bg-surface: #151b24;
+  --color-bg-elevated: #1c2430;
+  --color-border: #263141;
+  --color-border-accent: #ff6b35;
+  --color-text-primary: #e6edf3;
+  --color-text-secondary: #9aa7b6;
+  --color-text-muted: #5e6b7a;
+  --color-accent: #ff6b35;
+  --color-accent-dim: #ff6b352e;
+  --color-accent-hover: #ff8757;
+  --color-danger: #ff5c6c;
+  --color-warning: #f5a524;
+  --color-info: #58a6ff;
+  --font-family-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono: 'Geist Mono Variable', ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
 }
 
 /* ── Base ── */
@@ -75,9 +26,9 @@ html {
   scrollbar-color: var(--color-border) var(--color-bg);
 }
 
-/* Offset anchored sections so they don't hide behind the fixed nav. */
+/* Offset anchored sections so they don't hide behind the floating nav. */
 section[id] {
-  scroll-margin-top: 3.5rem;
+  scroll-margin-top: 5.5rem;
 }
 
 body {
@@ -120,6 +71,33 @@ body {
   height: 1px;
   background: var(--color-border);
   margin: 0;
+}
+
+/* ── Utility: Gradient text (ember) ── */
+.text-gradient {
+  background: linear-gradient(120deg, #ff8757 0%, #ff6b35 45%, #f5a524 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ── Utility: Ember radial glow (decorative background) ── */
+.ember-glow {
+  background:
+    radial-gradient(60% 60% at 50% 0%, var(--color-accent-dim) 0%, transparent 70%);
+}
+
+/* ── Utility: Primary ember button ── */
+.btn-accent {
+  background-image: linear-gradient(135deg, var(--color-accent-hover) 0%, var(--color-accent) 55%, #e85a26 100%);
+  color: var(--color-bg);
+  box-shadow: 0 0 0 0 rgba(255, 107, 53, 0);
+  transition: box-shadow 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+}
+.btn-accent:hover {
+  box-shadow: 0 8px 30px -8px rgba(255, 107, 53, 0.5);
+  filter: brightness(1.05);
 }
 
 /* ── Code blocks in writeups ── */

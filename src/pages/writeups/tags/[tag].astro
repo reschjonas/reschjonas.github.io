@@ -23,7 +23,7 @@ const writeups = all.filter((w) => w.data.tags.includes(tag));
 
 <Layout title={`#${tag} | Jonas Resch`} description={`Writeups tagged #${tag}.`}>
   <Nav />
-  <main class="pt-14">
+  <main class="pt-20">
     <section class="py-16 md:py-24">
       <div class="max-w-6xl mx-auto px-6">
         <a href="/writeups" class="font-mono text-sm text-text-muted hover:text-accent transition-colors mb-6 inline-flex items-center gap-2">
@@ -33,7 +33,7 @@ const writeups = all.filter((w) => w.data.tags.includes(tag));
           All writeups
         </a>
         <h1 class="text-4xl md:text-5xl font-bold mt-4">
-          <span class="text-text-muted">#</span><span class="text-accent">{tag}</span>
+          <span class="text-text-muted">#</span><span class="text-gradient">{tag}</span>
         </h1>
         <p class="mt-4 text-text-secondary">
           {writeups.length} {writeups.length === 1 ? 'writeup' : 'writeups'} tagged with this topic.

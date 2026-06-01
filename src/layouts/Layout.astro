@@ -1,4 +1,6 @@
 ---
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
 import '../styles/global.css';
 
 interface Props {
@@ -21,7 +23,7 @@ const { title, description = 'Jonas Resch: CS student specializing in IT securit
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="author" content="Jonas Resch" />
-    <meta name="theme-color" content="#07080a" />
+    <meta name="theme-color" content="#0D1117" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -36,9 +38,6 @@ const { title, description = 'Jonas Resch: CS student specializing in IT securit
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
-
-    <!-- Preconnect to Google Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body class="min-h-screen bg-bg text-text-primary">
     <slot />
