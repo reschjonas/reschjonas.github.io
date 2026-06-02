@@ -140,16 +140,17 @@ const mins = readingTime(writeup.body);
 
         {/* Table of contents */}
         {toc.length > 2 && (
-          <details class="mb-12 border border-border bg-bg-surface" open>
-            <summary class="font-mono text-[11px] uppercase tracking-widest text-accent px-4 py-3 cursor-pointer select-none">
+          <details class="mb-12 border border-border bg-bg-surface rounded-lg overflow-hidden" open>
+            <summary class="font-mono text-[11px] uppercase tracking-widest text-accent px-4 py-3 cursor-pointer select-none border-b border-border bg-bg-elevated/50">
               Contents
             </summary>
-            <nav class="px-4 pb-4 pt-1 space-y-1">
+            <nav class="px-4 py-3 space-y-0.5">
               {toc.map((h) => (
                 <a
                   href={`#${h.slug}`}
-                  class={`block font-mono text-sm text-text-secondary hover:text-accent transition-colors ${h.depth === 3 ? 'pl-4 text-xs' : ''}`}
+                  class={`group flex items-center gap-2 font-mono text-sm text-text-secondary hover:text-accent transition-colors py-1.5 ${h.depth === 3 ? 'pl-5 text-xs' : ''}`}
                 >
+                  <span class={`shrink-0 w-1 h-1 rounded-full transition-colors ${h.depth === 2 ? 'bg-border group-hover:bg-accent' : 'bg-transparent border border-border group-hover:border-accent'}`}></span>
                   {h.text}
                 </a>
               ))}
@@ -158,9 +159,50 @@ const mins = readingTime(writeup.body);
         )}
 
         <!-- Content -->
-        <div class="prose max-w-none">
+        <div class="prose prose-writeup max-w-none">
           <Content />
         </div>
+
+        <script>
+          // Wrap Shiki code blocks with a header (language label + copy button).
+          document.querySelectorAll('.prose pre.astro-code').forEach((pre) => {
+            if (pre.closest('.code-block')) return;
+
+            const lang = pre.getAttribute('data-language') || 'text';
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-block';
+
+            const header = document.createElement('div');
+            header.className = 'code-block__header';
+
+            const label = document.createElement('span');
+            label.className = 'code-block__lang';
+            label.textContent = lang;
+
+            const copyBtn = document.createElement('button');
+            copyBtn.type = 'button';
+            copyBtn.className = 'code-block__copy';
+            copyBtn.textContent = 'Copy';
+            copyBtn.addEventListener('click', async () => {
+              const text = pre.textContent ?? '';
+              try {
+                await navigator.clipboard.writeText(text);
+                copyBtn.textContent = 'Copied';
+                copyBtn.classList.add('is-copied');
+                setTimeout(() => {
+                  copyBtn.textContent = 'Copy';
+                  copyBtn.classList.remove('is-copied');
+                }, 1800);
+              } catch {
+                copyBtn.textContent = 'Failed';
+              }
+            });
+
+            header.append(label, copyBtn);
+            pre.parentNode?.insertBefore(wrapper, pre);
+            wrapper.append(header, pre);
+          });
+        </script>
 
         <!-- Footer divider -->
         <div class="h-px bg-border mt-16 mb-8"></div>
